@@ -21,7 +21,7 @@ export class EventsService {
           title: 'Mini-Golf',
           votes: [],
           description:
-            'Eine gemütliche Runde Minigolf steigert den Ehrgeiz. Denn verlieren ist keine Option! ;-)',
+            'Eine gemütliche Runde Minigolf steigert den Ehrgeiz. Denn verlieren ist keine Option!',
         },
         {
           id: '2',
@@ -35,7 +35,7 @@ export class EventsService {
           title: 'Bowling',
           votes: [],
           description:
-            'Ähnlich zum Mini-Golf nur mit größeren Bällen und somit NOCH MEHR EHRGEIZ xD',
+            'Ähnlich zum Mini-Golf nur mit größeren Bällen und somit NOCH MEHR EHRGEIZ!!!',
         },
       ],
     },

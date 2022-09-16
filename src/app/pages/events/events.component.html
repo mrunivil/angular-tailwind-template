@@ -8,24 +8,25 @@
   </p>
   <table>
     <thead>
-      <th>Vorschlag</th>
-      <th>Beschreibung</th>
-      <th>Deine Votes</th>
+      <th class="p-4">Vorschlag</th>
+      <th class="p-4">Beschreibung</th>
+      <th class="p-4">Deine Votes</th>
       <th></th>
     </thead>
     <tbody>
       <tr *ngFor="let proposal of event?.proposals">
-        <td>
+        <td class="p-4">
           <label>{{ proposal.title }}</label>
         </td>
-        <td>
+        <td class="p-4">
           <small>{{ proposal.description }}</small>
         </td>
-        <td>
+        <td class="p-4">
           {{ getSubmittedProposalVotesByProposalId(event, proposal).length }}
         </td>
-        <td>
+        <td class="p-4">
           <button
+            class="bg-green-500"
             type="button"
             [disabled]="!(3 - getVotesByEventId(event.id))"
             (click)="voteForProposal(event, proposal)"
