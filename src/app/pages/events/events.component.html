@@ -28,7 +28,7 @@
           <button
             class="bg-green-500"
             type="button"
-            [disabled]="!(3 - getVotesByEventId(event.id))"
+            [disabled]="3 === getVotesByEventId(event.id))"
             (click)="voteForProposal(event, proposal)"
           >
             +
