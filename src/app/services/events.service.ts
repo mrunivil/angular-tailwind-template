@@ -49,7 +49,7 @@ export class EventsService {
     return this.eventList$;
   }
 
-  getSubmittedProposalsByUserName(
+  getTotalUserVotesByEventId(
     eventId: string,
     userName: string
   ): ProposalEntity[] {
@@ -57,7 +57,33 @@ export class EventsService {
     const event = this.eventList.find((ev) => ev.id === eventId);
     // filter proposals by user name
     return event?.proposals.filter((proposal) =>
+      proposal.votes.some((vote) => vote === userName)
+    );
+  }
+
+  getSubmittedProposalsByUserName(
+    eventId: string,
+    proposalId: string,
+    userName: string
+  ): ProposalEntity[] {
+    // find macthing event
+    const event = this.eventList.find((ev) => ev.id === eventId);
+    // filter proposals by user name
+    const proposals = event?.proposals.filter(
+      (proposal) => proposal.id === proposalId
+    );
+    const votes = proposals.filter((proposal) =>
       proposal.votes.filter((vote) => vote === userName)
     );
+    return votes;
+  }
+
+  voteForProposal(eventId: string, proposalId: string, userName: string): void {
+    this.eventList
+      .find((event) => event.id === eventId)
+      .proposals.find((proposal) => proposal.id === proposalId)
+      .votes.push(userName);
+    console.dir(this.eventList);
+    this.eventList$.next(this.eventList);
   }
 }

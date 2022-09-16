@@ -1,15 +1,17 @@
 <h1>Hallo {{ userName }}</h1>
 
 <p>Folgende Team Events stehen demnächst an und müssen geplant werden:</p>
-<ng-container>
+<ng-container *ngFor="let event of events$ | async">
   <p>
-    Du hast noch {{ getVotesByEventId(event.id) }} Votes für dieses Event übrig,
-    welche du beliebig auf die einzelnen Events verteilen kannst.
+    Du hast noch {{ 3 - getVotesByEventId(event.id) }} Votes für dieses Event
+    übrig, welche du beliebig auf die einzelnen Events verteilen kannst.
   </p>
-  <table *ngFor="let event of events$ | async">
+  <table>
     <thead>
       <th>Vorschlag</th>
       <th>Beschreibung</th>
+      <th>Deine Votes</th>
+      <th></th>
     </thead>
     <tbody>
       <tr *ngFor="let proposal of event?.proposals">
@@ -18,6 +20,14 @@
         </td>
         <td>
           <small>{{ proposal.description }}</small>
+        </td>
+        <td>
+          {{ getSubmittedProposalVotesByProposalId(event, proposal).length }}
+        </td>
+        <td>
+          <button type="button" (click)="voteForProposal(event, proposal)">
+            +
+          </button>
         </td>
       </tr>
     </tbody>
