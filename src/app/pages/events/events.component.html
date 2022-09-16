@@ -4,7 +4,7 @@
 <ng-container *ngFor="let event of events$ | async">
   <p>
     Du hast noch {{ 3 - getVotesByEventId(event.id) }} Votes für dieses Event
-    übrig, welche du beliebig auf die einzelnen Events verteilen kannst.
+    übrig, welche du beliebig auf die einzelnen Vorschläge verteilen kannst.
   </p>
   <table>
     <thead>

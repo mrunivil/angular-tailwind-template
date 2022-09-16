@@ -1,0 +1,11 @@
+table td {
+  vertical-align: top;
+  padding: 0.5rem;
+}
+
+table th {
+  padding: 0.5rem;
+  vertical-align: center;
+  background: #333;
+  color: #ccc;
+}

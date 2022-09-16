@@ -39,7 +39,6 @@ export class EventsComponent {
   }
 
   voteForProposal(event: EventEntity, proposal: ProposalEntity): void {
-    console.log('voting for ' + proposal.title);
     this.eventsService.voteForProposal(event.id, proposal.id, this.userName);
   }
 }
