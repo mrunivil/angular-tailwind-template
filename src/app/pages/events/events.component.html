@@ -22,13 +22,15 @@
           <small>{{ proposal.description }}</small>
         </td>
         <td class="p-4">
-          {{ getSubmittedProposalVotesByProposalId(event, proposal).length }}
+          <label>
+            {{ getSubmittedProposalVotesByProposalId(event, proposal).length }}
+          </label>
         </td>
         <td class="p-4">
           <button
             class="bg-green-500"
             type="button"
-            [disabled]="3 === getVotesByEventId(event.id))"
+            [disabled]="hasNoVotesLeft(event.id)"
             (click)="voteForProposal(event, proposal)"
           >
             +

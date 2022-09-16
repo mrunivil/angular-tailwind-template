@@ -21,8 +21,11 @@ export class EventsComponent {
   }
 
   getVotesByEventId(id: string): number {
-    return this.eventsService.getTotalUserVotesByEventId(id, this.userName)
-      .length;
+    return this.eventsService.getTotalUserVotesByEventId(id, this.userName);
+  }
+
+  hasNoVotesLeft(eventId: string): boolean {
+    return 3 === this.getVotesByEventId(eventId);
   }
 
   getSubmittedProposalVotesByProposalId(

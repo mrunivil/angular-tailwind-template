@@ -49,16 +49,19 @@ export class EventsService {
     return this.eventList$;
   }
 
-  getTotalUserVotesByEventId(
-    eventId: string,
-    userName: string
-  ): ProposalEntity[] {
+  getTotalUserVotesByEventId(eventId: string, userName: string): number {
     // find macthing event
     const event = this.eventList.find((ev) => ev.id === eventId);
-    // filter proposals by user name
-    return event?.proposals.filter((proposal) =>
+    // filter proposals by votes
+    const proposals = event?.proposals.filter((proposal) =>
       proposal.votes.some((vote) => vote === userName)
     );
+
+    const ret = proposals.reduce((prev, curr) => {
+      return prev + curr.votes.filter((vote) => vote === userName)?.length ?? 0;
+    }, 0);
+
+    return ret;
   }
 
   getSubmittedProposalsByUserName(
