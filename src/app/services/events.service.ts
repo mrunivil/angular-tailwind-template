@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { EventEntity } from '../core/event.entity';
+import { EventEntity, ProposalEntity } from '../core/event.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -47,5 +47,17 @@ export class EventsService {
 
   getEvents(): Observable<Array<EventEntity>> {
     return this.eventList$;
+  }
+
+  getSubmittedProposalsByUserName(
+    eventId: string,
+    userName: string
+  ): ProposalEntity[] {
+    // find macthing event
+    const event = this.eventList.find((ev) => ev.id === eventId);
+    // filter proposals by user name
+    return event?.proposals.filter((proposal) =>
+      proposal.votes.filter((vote) => vote === userName)
+    );
   }
 }

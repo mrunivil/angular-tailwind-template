@@ -19,4 +19,11 @@ export class EventsComponent {
     this.userName = this.auth.getUser();
     this.events$ = this.eventsService.getEvents();
   }
+
+  getVotesByEventId(id: string) {
+    return this.eventsService.getSubmittedProposalsByUserName(
+      id,
+      this.userName
+    );
+  }
 }

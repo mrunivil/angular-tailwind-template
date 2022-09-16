@@ -1,19 +1,25 @@
 <h1>Hallo {{ userName }}</h1>
 
 <p>Folgende Team Events stehen demnächst an und müssen geplant werden:</p>
-<table *ngFor="let event of events$ | async">
-  <thead>
-    <th>Vorschlag</th>
-    <th>Beschreibung</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let proposal of event?.proposals">
-      <td>
-        <label>{{ proposal.title }}</label>
-      </td>
-      <td>
-        <small>{{ proposal.description }}</small>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<ng-container>
+  <p>
+    Du hast noch {{ getVotesByEventId(event.id) }} Votes für dieses Event übrig,
+    welche du beliebig auf die einzelnen Events verteilen kannst.
+  </p>
+  <table *ngFor="let event of events$ | async">
+    <thead>
+      <th>Vorschlag</th>
+      <th>Beschreibung</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proposal of event?.proposals">
+        <td>
+          <label>{{ proposal.title }}</label>
+        </td>
+        <td>
+          <small>{{ proposal.description }}</small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
