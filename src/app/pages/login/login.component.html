@@ -1,0 +1,6 @@
+<h1>ciao adessi!</h1>
+<label>Bitte melde dich mit deinem Namen an.</label>
+<input type="text" [(ngModel)]="userName" />
+<button [disabled]="!userName || !userName.length" (click)="login()">
+  Anmelden
+</button>
