@@ -9,3 +9,18 @@ table th {
   background: #333;
   color: #ccc;
 }
+
+button {
+  background: #4b68c5;
+  color: #eee;
+  border-radius: 10%;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  outline: none;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+button:hover {
+  cursor: pointer;
+  background: #738ad4;
+}
