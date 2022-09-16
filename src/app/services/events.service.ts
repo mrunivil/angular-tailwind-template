@@ -65,16 +65,15 @@ export class EventsService {
     eventId: string,
     proposalId: string,
     userName: string
-  ): ProposalEntity[] {
+  ): string[] {
     // find macthing event
     const event = this.eventList.find((ev) => ev.id === eventId);
-    // filter proposals by user name
-    const proposals = event?.proposals.filter(
+    // find proposals by id
+    const proposal = event?.proposals.find(
       (proposal) => proposal.id === proposalId
     );
-    const votes = proposals.filter((proposal) =>
-      proposal.votes.filter((vote) => vote === userName)
-    );
+    // find vote by user name
+    const votes = proposal.votes.filter((vote) => vote === userName);
     return votes;
   }
 
@@ -83,7 +82,6 @@ export class EventsService {
       .find((event) => event.id === eventId)
       .proposals.find((proposal) => proposal.id === proposalId)
       .votes.push(userName);
-    console.dir(this.eventList);
     this.eventList$.next(this.eventList);
   }
 }

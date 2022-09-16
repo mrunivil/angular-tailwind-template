@@ -28,12 +28,14 @@ export class EventsComponent {
   getSubmittedProposalVotesByProposalId(
     event: EventEntity,
     proposal: ProposalEntity
-  ): number {
-    return this.eventsService.getSubmittedProposalsByUserName(
-      event.id,
-      proposal.id,
-      this.userName
-    ).length;
+  ): string[] {
+    return (
+      this.eventsService.getSubmittedProposalsByUserName(
+        event.id,
+        proposal.id,
+        this.userName
+      ) ?? []
+    );
   }
 
   voteForProposal(event: EventEntity, proposal: ProposalEntity): void {

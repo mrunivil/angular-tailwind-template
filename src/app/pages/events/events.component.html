@@ -25,7 +25,11 @@
           {{ getSubmittedProposalVotesByProposalId(event, proposal).length }}
         </td>
         <td>
-          <button type="button" (click)="voteForProposal(event, proposal)">
+          <button
+            type="button"
+            [disabled]="!(3 - getVotesByEventId(event.id))"
+            (click)="voteForProposal(event, proposal)"
+          >
             +
           </button>
         </td>
