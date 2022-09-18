@@ -1,6 +1,32 @@
-<h1>ciao adessi!</h1>
-<label>Bitte melde dich mit deinem Namen an.</label>
-<input type="text" [(ngModel)]="userName" />
-<button [disabled]="!userName || !userName.length" (click)="login()">
-  Anmelden
-</button>
+<div
+  class="
+    w-full
+    h-screen
+    flex flex-grow-1
+    justify-content-center
+    align-items-center
+  "
+>
+  <p-card>
+    <ng-template pTemplate="header">
+      <h2 class="p-3">ciao adessi!</h2>
+    </ng-template>
+    <div class="w-full flex-column flex-grow-1 justify-content-center">
+      <div>
+        <h4>Bitte melde dich mit deinem Namen an.</h4>
+      </div>
+      <input class="w-full" pInputText type="text" [(ngModel)]="userName" />
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="w-full flex flex-grow-1 justify-content-end">
+        <button
+          pButton
+          [disabled]="!userName || !userName.length"
+          (click)="login()"
+        >
+          Anmelden
+        </button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

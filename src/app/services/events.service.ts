@@ -87,4 +87,20 @@ export class EventsService {
       .votes.push(userName);
     this.eventList$.next(this.eventList);
   }
+
+  rmoveProposalVote(
+    eventId: string,
+    proposalId: string,
+    userName: string
+  ): void {
+    const index = this.eventList
+      .find((event) => event.id === eventId)
+      .proposals.find((proposal) => proposal.id === proposalId)
+      .votes.indexOf(userName);
+    this.eventList
+      .find((event) => event.id === eventId)
+      .proposals.find((proposal) => proposal.id === proposalId)
+      .votes.splice(index, 1);
+    this.eventList$.next(this.eventList);
+  }
 }

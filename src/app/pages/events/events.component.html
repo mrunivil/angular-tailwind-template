@@ -1,42 +1,58 @@
-<h1>Hallo {{ userName }}</h1>
+<div class="card m-3">
+  <h3>Hallo {{ userName }}</h3>
+  <p>Folgende Team Events stehen demnächst an und müssen geplant werden:</p>
+  <div *ngFor="let event of events$ | async">
+    <p>
+      Du hast noch
+      <strong class="text-4xl text-blue-500">{{
+        3 - getVotesByEventId(event.id)
+      }}</strong>
+      Votes für dieses Event übrig, welche du beliebig auf die einzelnen
+      Vorschläge verteilen kannst.
+    </p>
+    <p-divider></p-divider>
+    <p-table [value]="event.proposals">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Vorschlag</th>
+          <th>Beschreibung</th>
+          <th>Deine Votes</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-proposal>
+        <tr>
+          <td>{{ proposal.title }}</td>
+          <td>{{ proposal.description }}</td>
+          <td>
+            <i
+              (click)="rmoveProposalVote(event, proposal)"
+              class="pi pi-heart-fill hover:text-700"
+              style="color:red;cursor:pointer"
+              *ngFor="
+                let votes of getSubmittedProposalVotesByProposalId(
+                  event,
+                  proposal
+                )
+              "
+            ></i>
+          </td>
+          <td>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-heart-fill"
+              iconPos="left"
+              (click)="voteForProposal(event, proposal)"
+              [disabled]="hasNoVotesLeft(event)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
 
-<p>Folgende Team Events stehen demnächst an und müssen geplant werden:</p>
-<ng-container *ngFor="let event of events$ | async">
-  <p>
-    Du hast noch {{ 3 - getVotesByEventId(event.id) }} Votes für dieses Event
-    übrig, welche du beliebig auf die einzelnen Vorschläge verteilen kannst.
-  </p>
-  <table>
-    <thead>
-      <th class="p-4">Vorschlag</th>
-      <th class="p-4">Beschreibung</th>
-      <th class="p-4">Deine Votes</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let proposal of event?.proposals">
-        <td class="p-4">
-          <label>{{ proposal.title }}</label>
-        </td>
-        <td class="p-4">
-          <small>{{ proposal.description }}</small>
-        </td>
-        <td class="p-4">
-          <label>
-            {{ getSubmittedProposalVotesByProposalId(event, proposal).length }}
-          </label>
-        </td>
-        <td class="p-4">
-          <button
-            class="bg-green-500"
-            type="button"
-            [disabled]="hasNoVotesLeft(event.id)"
-            (click)="voteForProposal(event, proposal)"
-          >
-            +
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+<h1></h1>
+
+<p></p>

@@ -24,8 +24,8 @@ export class EventsComponent {
     return this.eventsService.getTotalUserVotesByEventId(id, this.userName);
   }
 
-  hasNoVotesLeft(eventId: string): boolean {
-    return 3 === this.getVotesByEventId(eventId);
+  hasNoVotesLeft(event: EventEntity): boolean {
+    return 3 === this.getVotesByEventId(event.id);
   }
 
   getSubmittedProposalVotesByProposalId(
@@ -40,7 +40,9 @@ export class EventsComponent {
       ) ?? []
     );
   }
-
+  rmoveProposalVote(event, proposal):void{
+    this.eventsService.rmoveProposalVote(event.id, proposal.id, this.userName);
+  }
   voteForProposal(event: EventEntity, proposal: ProposalEntity): void {
     this.eventsService.voteForProposal(event.id, proposal.id, this.userName);
   }
