@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { EventEntity, ProposalEntity } from '../core/event.entity';
+import { EventEntity } from '../core/event.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,7 @@ export class EventsService {
           title: 'Bowling',
           votes: [],
           description:
-            'Ähnlich zum Mini-Golf nur mit größeren Bällen und somit NOCH MEHR EHRGEIZ!!!',
+            'Ähnlich wie Mini-Golf nur mit größeren Bällen und somit NOCH MEHR EHRGEIZ!!!',
         },
       ],
     },

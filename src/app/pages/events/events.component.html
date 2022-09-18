@@ -1,9 +1,8 @@
 <div class="card m-3">
-  <h3>Hallo {{ userName }}</h3>
-  <p>Folgende Team Events stehen demnächst an und müssen geplant werden:</p>
+  <h2>Hallo {{ userName }}</h2>
   <div *ngFor="let event of events$ | async">
     <p>
-      Du hast noch
+      Das nächste Team Event muss geplant werden. Du hast noch
       <strong class="text-4xl text-blue-500">{{
         3 - getVotesByEventId(event.id)
       }}</strong>
@@ -22,7 +21,9 @@
       </ng-template>
       <ng-template pTemplate="body" let-proposal>
         <tr>
-          <td>{{ proposal.title }}</td>
+          <td>
+            <b>{{ proposal.title }}</b>
+          </td>
           <td>{{ proposal.description }}</td>
           <td>
             <i
